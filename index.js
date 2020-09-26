@@ -1,6 +1,28 @@
-const http = require('http'); //loads the library to enable it to act as a server
-var port = process.env.PORT || 5000; //specifies the port no to whatever heroku gives or 5000 on local host
-http.createServer(function(req,res){ // creates a server
-    res.writeHead(200,{'Content-type':'text/plain'}); //Specifies that the respones "hello" is a text
-    res.end("hello namastey"); //shows the text "hello" on th eweb page
-}).listen(port); // attaches this server to the port no.
+var express = require('express');
+var formidable = require('formidable');
+var port = process.env.PORT || 5000;
+var app = express();
+
+app.get('/', function (req, res){
+    res.sendFile(__dirname + '/ind.html');
+});
+
+app.post('/', function (req, res){
+    var form = new formidable.IncomingForm();
+
+    form.parse(req);
+
+    form.on('fileBegin', function (name, file){
+        file.path = __dirname + '/uploads/' + file.name;
+    });
+
+    form.on('file', function (name, file){
+        console.log('Uploaded ' + file.name);
+    });
+
+    res.sendFile(__dirname + '/ind.html');
+    res.write('Uploaded');
+    res.end();
+});
+
+app.listen(port);
