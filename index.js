@@ -25,5 +25,5 @@ app.post('/', function (req, res){
     res.end();
 });
 
-app.listen("https://euuplo.herokuapp.com/");
+app.listen(3000);
 
