@@ -13,15 +13,15 @@ app.post('/', function (req, res){
     form.parse(req);
 
     form.on('fileBegin', function (name, file){
-        file.path = 'uploads/' + file.name;
+        file.path = __dirname + '/uploads/' + file.name;
     });
 
     form.on('file', function (name, file){
         console.log('Uploaded ' + file.name);
+        res.end('Uploaded');
     });
 
     res.sendFile(__dirname + '/ind.html');
-    res.write('Uploaded');
     res.end();
 });
 
