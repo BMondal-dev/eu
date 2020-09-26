@@ -1,13 +1,13 @@
 var http = require('http');
 var formidable = require('formidable');
-var fs = require('fs');
-var port = process.env.PORT || 5000;
+var port= process.env.PORT || 5000;
+
 http.createServer(function (req, res) {
   if (req.url == '/fileupload') {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
       var oldpath = files.filetoupload.path;
-      var newpath = 'C:/Users/Your Name/' + files.filetoupload.name;
+      var newpath = 'uploads/' + files.filetoupload.name;
       fs.rename(oldpath, newpath, function (err) {
         if (err) throw err;
         res.write('File uploaded and moved!');
