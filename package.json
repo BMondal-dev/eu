@@ -1,13 +1,17 @@
 {
-  "name": "My_NodeJs",
+  "name": "euuplo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "formidable": "^1.2.2",
     "express-fileupload": "^1.2.0",
     "express": "^4.17.1",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "morgan": "^1.10.0",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {},
   "scripts": {
